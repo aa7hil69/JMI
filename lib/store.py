@@ -316,16 +316,70 @@ def save_applications(apps: list[dict], rd: bool = False) -> None:
             )
 
 
+def _guess_content_type(filename: str) -> str:
+    import mimetypes
+
+    ctype, _ = mimetypes.guess_type(filename)
+    return ctype or "application/octet-stream"
+
+
+def _save_upload_db(rel_path: str, file_bytes: bytes, content_type: str) -> None:
+    with db.connect() as conn:
+        conn.execute(
+            """
+            INSERT INTO upload_files (path, content, content_type, created_at)
+            VALUES (%s, %s, %s, %s)
+            ON CONFLICT (path) DO UPDATE SET
+                content = EXCLUDED.content,
+                content_type = EXCLUDED.content_type,
+                created_at = EXCLUDED.created_at
+            """,
+            (rel_path, file_bytes, content_type, now_str()),
+        )
+
+
+def get_upload(rel_path: str) -> tuple[bytes, str] | None:
+    """Return (bytes, content_type) for a stored upload path, or None."""
+    path = (rel_path or "").lstrip("/")
+    if not path:
+        return None
+    disk = ROOT / path
+    if disk.is_file():
+        return disk.read_bytes(), _guess_content_type(path)
+    with db.connect() as conn:
+        row = conn.execute(
+            "SELECT content, content_type FROM upload_files WHERE path = %s",
+            (path,),
+        ).fetchone()
+    if not row:
+        return None
+    content, ctype = row[0], row[1] or _guess_content_type(path)
+    if isinstance(content, memoryview):
+        content = content.tobytes()
+    return bytes(content), ctype
+
+
 def save_upload(file_bytes: bytes, relative_dir: str, filename: str) -> str:
-    dest_dir = ROOT / relative_dir
-    dest_dir.mkdir(parents=True, exist_ok=True)
     stamp = datetime.now().strftime("%Y%m%d%H%M%S%f")
     safe = "".join(c if c.isalnum() or c in ".-_" else "_" for c in filename) or "upload.bin"
     out_name = f"{stamp}-{safe}"
-    dest = dest_dir / out_name
-    # Extremely unlikely collision in the same microsecond — still avoid overwrite
-    if dest.exists():
-        out_name = f"{stamp}-{os.getpid()}-{safe}"
-        dest = dest_dir / out_name
-    dest.write_bytes(file_bytes)
-    return f"{relative_dir}/{out_name}".replace("\\", "/")
+    rel_path = f"{relative_dir}/{out_name}".replace("\\", "/")
+    dest = ROOT / relative_dir / out_name
+    ctype = _guess_content_type(filename)
+
+    wrote_disk = False
+    try:
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        if dest.exists():
+            out_name = f"{stamp}-{os.getpid()}-{safe}"
+            rel_path = f"{relative_dir}/{out_name}".replace("\\", "/")
+            dest = ROOT / relative_dir / out_name
+        dest.write_bytes(file_bytes)
+        wrote_disk = True
+    except OSError:
+        # Vercel / serverless: /var/task is read-only — persist in Postgres instead
+        wrote_disk = False
+
+    if not wrote_disk or os.environ.get("VERCEL"):
+        _save_upload_db(rel_path, file_bytes, ctype)
+    return rel_path

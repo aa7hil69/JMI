@@ -71,6 +71,14 @@ CREATE TABLE IF NOT EXISTS applications_rd (
     resume_path TEXT
 );
 
+-- Blob storage for Vercel (read-only filesystem); also usable locally
+CREATE TABLE IF NOT EXISTS upload_files (
+    path TEXT PRIMARY KEY,
+    content BYTEA NOT NULL,
+    content_type TEXT NOT NULL DEFAULT 'application/octet-stream',
+    created_at TEXT NOT NULL DEFAULT ''
+);
+
 CREATE INDEX IF NOT EXISTS idx_jobs_status ON jobs (status);
 CREATE INDEX IF NOT EXISTS idx_clients_name ON clients (clientname);
 CREATE INDEX IF NOT EXISTS idx_applications_job ON applications (job_id);

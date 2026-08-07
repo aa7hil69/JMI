@@ -224,6 +224,13 @@ class Handler(SimpleHTTPRequestHandler):
         if target.is_file() and target.suffix.lower() == ".php":
             return self._bytes(target.read_bytes())
 
+        # Uploads may live only in Postgres on Vercel (read-only disk)
+        if rel.startswith("uploads/") or rel.startswith("Uploads/"):
+            blob = store.get_upload(rel)
+            if blob:
+                data, ctype = blob
+                return self._bytes(data, ctype)
+
         return super().do_GET()
 
     def do_POST(self):
