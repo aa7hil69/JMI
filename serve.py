@@ -91,9 +91,29 @@ class Handler(SimpleHTTPRequestHandler):
         raw = json.dumps(obj, ensure_ascii=False).encode("utf-8")
         self._bytes(raw, "application/json; charset=utf-8", code)
 
+    def handle_expect_100(self):
+        """Vercel replaces handle_one_request; still honor Expect for multipart uploads."""
+        try:
+            self.send_response_only(100)
+            self.end_headers()
+            self.wfile.flush()
+        except Exception:
+            pass
+        return True
+
+    def _maybe_send_continue(self) -> None:
+        expect = (self.headers.get("Expect") or "").lower()
+        if expect == "100-continue":
+            self.handle_expect_100()
+
     def _read_body(self) -> bytes:
+        # Browsers/curl often send Expect: 100-continue with multipart; without a
+        # 100 response the body never arrives and rfile.read() hangs until timeout.
+        self._maybe_send_continue()
         length = int(self.headers.get("Content-Length", 0) or 0)
-        return self.rfile.read(length) if length else b""
+        if length <= 0:
+            return b""
+        return self.rfile.read(length)
 
     def _form(self) -> dict[str, list[str]]:
         ctype = self.headers.get("Content-Type", "")

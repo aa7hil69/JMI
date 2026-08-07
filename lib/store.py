@@ -343,9 +343,10 @@ def get_upload(rel_path: str) -> tuple[bytes, str] | None:
     path = (rel_path or "").lstrip("/")
     if not path:
         return None
-    disk = ROOT / path
-    if disk.is_file():
-        return disk.read_bytes(), _guess_content_type(path)
+    for root in (ROOT, _disk_root()):
+        disk = root / path
+        if disk.is_file():
+            return disk.read_bytes(), _guess_content_type(path)
     with db.connect() as conn:
         row = conn.execute(
             "SELECT content, content_type FROM upload_files WHERE path = %s",
@@ -359,12 +360,22 @@ def get_upload(rel_path: str) -> tuple[bytes, str] | None:
     return bytes(content), ctype
 
 
+def _disk_root() -> Path:
+    """Local project root, or /tmp on Vercel (read-only /var/task)."""
+    if os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME"):
+        root = Path("/tmp/jmi")
+        root.mkdir(parents=True, exist_ok=True)
+        return root
+    return ROOT
+
+
 def save_upload(file_bytes: bytes, relative_dir: str, filename: str) -> str:
     stamp = datetime.now().strftime("%Y%m%d%H%M%S%f")
     safe = "".join(c if c.isalnum() or c in ".-_" else "_" for c in filename) or "upload.bin"
     out_name = f"{stamp}-{safe}"
     rel_path = f"{relative_dir}/{out_name}".replace("\\", "/")
-    dest = ROOT / relative_dir / out_name
+    disk_root = _disk_root()
+    dest = disk_root / relative_dir / out_name
     ctype = _guess_content_type(filename)
 
     wrote_disk = False
@@ -373,13 +384,13 @@ def save_upload(file_bytes: bytes, relative_dir: str, filename: str) -> str:
         if dest.exists():
             out_name = f"{stamp}-{os.getpid()}-{safe}"
             rel_path = f"{relative_dir}/{out_name}".replace("\\", "/")
-            dest = ROOT / relative_dir / out_name
+            dest = disk_root / relative_dir / out_name
         dest.write_bytes(file_bytes)
         wrote_disk = True
     except OSError:
-        # Vercel / serverless: /var/task is read-only — persist in Postgres instead
         wrote_disk = False
 
-    if not wrote_disk or os.environ.get("VERCEL"):
+    # Always persist in Postgres on serverless so files survive cold starts
+    if not wrote_disk or os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME"):
         _save_upload_db(rel_path, file_bytes, ctype)
     return rel_path
