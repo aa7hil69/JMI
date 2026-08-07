@@ -22,6 +22,17 @@ ADMIN_USER = "admin"
 ADMIN_PASS = "jmspc"
 AUTH_COOKIE = "jmi_admin"
 
+_schema_ready = False
+
+
+def _ensure_db() -> None:
+    """Lazy schema init for serverless (Vercel never calls main())."""
+    global _schema_ready
+    if _schema_ready:
+        return
+    db.ensure_schema()
+    _schema_ready = True
+
 
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
@@ -137,6 +148,11 @@ class Handler(SimpleHTTPRequestHandler):
 
     # ---------- routing ----------
     def do_GET(self):
+        try:
+            _ensure_db()
+        except Exception as exc:
+            return self.send_error(500, f"Database unavailable: {exc}")
+
         parsed = urlparse(self.path)
         path = parsed.path.rstrip("/") or "/"
         # keep /admin as /admin (not empty after rstrip of trailing only)
@@ -211,6 +227,11 @@ class Handler(SimpleHTTPRequestHandler):
         return super().do_GET()
 
     def do_POST(self):
+        try:
+            _ensure_db()
+        except Exception as exc:
+            return self.send_error(500, f"Database unavailable: {exc}")
+
         parsed = urlparse(self.path)
         path = parsed.path.rstrip("/") or "/"
         if parsed.path.startswith("/admin/"):
@@ -488,6 +509,11 @@ class Handler(SimpleHTTPRequestHandler):
         self.send_error(404, "Unknown admin POST")
 
     def _handle_admin_api_write(self, method: str):
+        try:
+            _ensure_db()
+        except Exception as exc:
+            return self.send_error(500, f"Database unavailable: {exc}")
+
         parsed = urlparse(self.path)
         admin_rel = urls.normalize_admin_rel(self._admin_rel(parsed.path) or "")
         if admin_rel != "api.php":
@@ -648,13 +674,17 @@ class Handler(SimpleHTTPRequestHandler):
         sys.stderr.write("%s - %s\n" % (self.address_string(), fmt % args))
 
 
+# Vercel / serverless alias (entrypoint may also use Handler directly)
+handler = Handler
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8080)
     args = parser.parse_args()
     try:
-        db.ensure_schema()
+        _ensure_db()
     except Exception as exc:
         print("PostgreSQL connection failed.")
         print(f"  URL: {db.database_url()}")

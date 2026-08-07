@@ -1,0 +1,12 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "serve.py": {
+      "maxDuration": 60,
+      "excludeFiles": "{archive/**,job-details-cache/**,job-submit-cache/**,**/*.tmp}"
+    }
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/serve" }
+  ]
+}
