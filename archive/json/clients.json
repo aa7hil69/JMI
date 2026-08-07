@@ -1,0 +1,629 @@
+{
+  "clients": [
+    {
+      "id": 1,
+      "clientname": "Abu Dhabi National Oil Co.",
+      "status": 1
+    },
+    {
+      "id": 2,
+      "clientname": "Abu Hani Group",
+      "status": 1
+    },
+    {
+      "id": 3,
+      "clientname": "Addirham",
+      "status": 1
+    },
+    {
+      "id": 4,
+      "clientname": "Adlife Hospitals",
+      "status": 1
+    },
+    {
+      "id": 5,
+      "clientname": "Al Adrak Trading & Contracting",
+      "status": 1
+    },
+    {
+      "id": 6,
+      "clientname": "Al Ghalbi Engineering & Construction Co.",
+      "status": 1
+    },
+    {
+      "id": 7,
+      "clientname": "Al Haditha Petroleum Co SAOC",
+      "status": 1
+    },
+    {
+      "id": 8,
+      "clientname": "Al Hashar Group",
+      "status": 1
+    },
+    {
+      "id": 9,
+      "clientname": "Al Hayat International Hospital",
+      "status": 1
+    },
+    {
+      "id": 10,
+      "clientname": "Al Jassar Group",
+      "status": 1
+    },
+    {
+      "id": 11,
+      "clientname": "Al Khalili Group of Companies",
+      "status": 1
+    },
+    {
+      "id": 12,
+      "clientname": "Al Madina Takaful SAOG",
+      "status": 1
+    },
+    {
+      "id": 13,
+      "clientname": "Al Moosa Group",
+      "status": 1
+    },
+    {
+      "id": 14,
+      "clientname": "Al Naba Services",
+      "status": 1
+    },
+    {
+      "id": 15,
+      "clientname": "Al Nama Poultry",
+      "status": 1
+    },
+    {
+      "id": 16,
+      "clientname": "Al Rakaib Training LLC",
+      "status": 1
+    },
+    {
+      "id": 17,
+      "clientname": "Al Saffa Poultry",
+      "status": 1
+    },
+    {
+      "id": 18,
+      "clientname": "Al Shanfari Group",
+      "status": 1
+    },
+    {
+      "id": 19,
+      "clientname": "Al Siyabi Group of Companies",
+      "status": 1
+    },
+    {
+      "id": 20,
+      "clientname": "Al Tasnim Enterprises",
+      "status": 1
+    },
+    {
+      "id": 21,
+      "clientname": "Al Thabat Holding LLC",
+      "status": 1
+    },
+    {
+      "id": 22,
+      "clientname": "Alfellaj Hotel",
+      "status": 1
+    },
+    {
+      "id": 23,
+      "clientname": "Apollo Hospital Oman",
+      "status": 1
+    },
+    {
+      "id": 24,
+      "clientname": "Arabian Industries",
+      "status": 1
+    },
+    {
+      "id": 25,
+      "clientname": "Asia Express Exchange",
+      "status": 1
+    },
+    {
+      "id": 26,
+      "clientname": "Atyab Investments Group",
+      "status": 1
+    },
+    {
+      "id": 27,
+      "clientname": "Bahwan Engineering Group",
+      "status": 1
+    },
+    {
+      "id": 28,
+      "clientname": "Bahwan International Holding Group",
+      "status": 1
+    },
+    {
+      "id": 29,
+      "clientname": "Bank Beirut",
+      "status": 1
+    },
+    {
+      "id": 30,
+      "clientname": "Bank Muscat SAOG",
+      "status": 1
+    },
+    {
+      "id": 31,
+      "clientname": "Berkeley Al Ghrimeel Engineering Consultancy Co.",
+      "status": 1
+    },
+    {
+      "id": 32,
+      "clientname": "Bin Mirza Group",
+      "status": 1
+    },
+    {
+      "id": 33,
+      "clientname": "Capital Drilling Limited",
+      "status": 1
+    },
+    {
+      "id": 34,
+      "clientname": "Capital Drilling Limited (OMAN)",
+      "status": 1
+    },
+    {
+      "id": 35,
+      "clientname": "Centre for British Teachers LLC",
+      "status": 1
+    },
+    {
+      "id": 36,
+      "clientname": "CHIC by Sisters",
+      "status": 1
+    },
+    {
+      "id": 37,
+      "clientname": "Crowe Oman",
+      "status": 1
+    },
+    {
+      "id": 38,
+      "clientname": "Drake & Scull International LLC (OHI Group)",
+      "status": 1
+    },
+    {
+      "id": 39,
+      "clientname": "Duqm SEZAD",
+      "status": 1
+    },
+    {
+      "id": 40,
+      "clientname": "Easa Al Saleh (AL GURG)",
+      "status": 1
+    },
+    {
+      "id": 41,
+      "clientname": "Easa Saleh Al Gurg Group of Companies",
+      "status": 1
+    },
+    {
+      "id": 42,
+      "clientname": "Enhance Oman",
+      "status": 1
+    },
+    {
+      "id": 43,
+      "clientname": "Eva Clinic",
+      "status": 1
+    },
+    {
+      "id": 44,
+      "clientname": "Farab-Nardis Co. FNC",
+      "status": 1
+    },
+    {
+      "id": 45,
+      "clientname": "Fisheries Development of Oman",
+      "status": 1
+    },
+    {
+      "id": 46,
+      "clientname": "Ghaida Al Mukhaini & Her Partner Trading Co LLC",
+      "status": 1
+    },
+    {
+      "id": 47,
+      "clientname": "Grand Blue City Development (GBC)",
+      "status": 1
+    },
+    {
+      "id": 48,
+      "clientname": "Green Ferro Alloy FZC",
+      "status": 1
+    },
+    {
+      "id": 49,
+      "clientname": "Gulf Agency Company LLC",
+      "status": 1
+    },
+    {
+      "id": 50,
+      "clientname": "Gulf Mining Group",
+      "status": 1
+    },
+    {
+      "id": 51,
+      "clientname": "Haffa House Hotel (Shanfari Group)",
+      "status": 1
+    },
+    {
+      "id": 52,
+      "clientname": "Haya Water",
+      "status": 1
+    },
+    {
+      "id": 53,
+      "clientname": "Intech LLC",
+      "status": 1
+    },
+    {
+      "id": 54,
+      "clientname": "JGC Corporation - Japan (Bahwan Holding Group JV Company)",
+      "status": 1
+    },
+    {
+      "id": 55,
+      "clientname": "Kapico Group Kuwait",
+      "status": 1
+    },
+    {
+      "id": 56,
+      "clientname": "KOC Kuwait",
+      "status": 1
+    },
+    {
+      "id": 57,
+      "clientname": "KONE - Oman",
+      "status": 1
+    },
+    {
+      "id": 58,
+      "clientname": "KPMG",
+      "status": 1
+    },
+    {
+      "id": 59,
+      "clientname": "Kuwait Flour Mills",
+      "status": 1
+    },
+    {
+      "id": 60,
+      "clientname": "Landmark International LLC",
+      "status": 1
+    },
+    {
+      "id": 61,
+      "clientname": "Mazoon Dairy Co. SAOC",
+      "status": 1
+    },
+    {
+      "id": 62,
+      "clientname": "MHD AVON",
+      "status": 1
+    },
+    {
+      "id": 63,
+      "clientname": "Ministry of Defence",
+      "status": 1
+    },
+    {
+      "id": 64,
+      "clientname": "Ministry of Manpower",
+      "status": 1
+    },
+    {
+      "id": 65,
+      "clientname": "Ministry of Social Affairs",
+      "status": 1
+    },
+    {
+      "id": 66,
+      "clientname": "Moon Iron & Steel Company SAOC",
+      "status": 1
+    },
+    {
+      "id": 67,
+      "clientname": "Moosa Abdul Rahman Hassan",
+      "status": 1
+    },
+    {
+      "id": 68,
+      "clientname": "Muscat BAY",
+      "status": 1
+    },
+    {
+      "id": 69,
+      "clientname": "Muscat Fertilizer Co. LLC",
+      "status": 1
+    },
+    {
+      "id": 70,
+      "clientname": "Muscat Finance SAOG",
+      "status": 1
+    },
+    {
+      "id": 71,
+      "clientname": "Muscat Media Group",
+      "status": 1
+    },
+    {
+      "id": 72,
+      "clientname": "Muscat Overseas Group",
+      "status": 1
+    },
+    {
+      "id": 73,
+      "clientname": "Mustafa Sultan Enterprises LLC",
+      "status": 1
+    },
+    {
+      "id": 74,
+      "clientname": "NABIL SAOG",
+      "status": 1
+    },
+    {
+      "id": 75,
+      "clientname": "Nakhal Ahlia Investment Company SAOC",
+      "status": 1
+    },
+    {
+      "id": 76,
+      "clientname": "National Drilling Co.",
+      "status": 1
+    },
+    {
+      "id": 77,
+      "clientname": "National Gas Co. SAOG",
+      "status": 1
+    },
+    {
+      "id": 78,
+      "clientname": "National Life & General Insurance Co. SAOG",
+      "status": 1
+    },
+    {
+      "id": 79,
+      "clientname": "Nestle Oman LLC",
+      "status": 1
+    },
+    {
+      "id": 80,
+      "clientname": "NJS Consultants Oman LLC",
+      "status": 1
+    },
+    {
+      "id": 81,
+      "clientname": "Oasis Energy LLC",
+      "status": 1
+    },
+    {
+      "id": 82,
+      "clientname": "OHI Group of Companies",
+      "status": 1
+    },
+    {
+      "id": 83,
+      "clientname": "OIFC",
+      "status": 1
+    },
+    {
+      "id": 84,
+      "clientname": "Oman Data Park LLC",
+      "status": 1
+    },
+    {
+      "id": 85,
+      "clientname": "Oman Flour Mills Co. SAOG",
+      "status": 1
+    },
+    {
+      "id": 86,
+      "clientname": "Oman International Bank SAOG",
+      "status": 1
+    },
+    {
+      "id": 87,
+      "clientname": "Oman International Container Terminal LLC",
+      "status": 1
+    },
+    {
+      "id": 88,
+      "clientname": "Oman LNG",
+      "status": 1
+    },
+    {
+      "id": 89,
+      "clientname": "Oman National Engineering & Investment Co. SAOG",
+      "status": 1
+    },
+    {
+      "id": 90,
+      "clientname": "Oman National Transport Co.",
+      "status": 1
+    },
+    {
+      "id": 91,
+      "clientname": "Oman Porcelain Co. SAOC",
+      "status": 1
+    },
+    {
+      "id": 92,
+      "clientname": "Oman Refreshment Co. SAOG",
+      "status": 1
+    },
+    {
+      "id": 93,
+      "clientname": "OmanExpo – SABCO",
+      "status": 1
+    },
+    {
+      "id": 94,
+      "clientname": "One Stop Solution",
+      "status": 1
+    },
+    {
+      "id": 95,
+      "clientname": "Osool Poultry Co. SAOC",
+      "status": 1
+    },
+    {
+      "id": 96,
+      "clientname": "PEC International LLC",
+      "status": 1
+    },
+    {
+      "id": 97,
+      "clientname": "Port of Duqm",
+      "status": 1
+    },
+    {
+      "id": 98,
+      "clientname": "Qatar Telecom (Q-Tel)",
+      "status": 1
+    },
+    {
+      "id": 99,
+      "clientname": "Redington Gulf FZC Middle East Region",
+      "status": 1
+    },
+    {
+      "id": 100,
+      "clientname": "REMAX LLC",
+      "status": 1
+    },
+    {
+      "id": 101,
+      "clientname": "Renaissance Services SAOG",
+      "status": 1
+    },
+    {
+      "id": 102,
+      "clientname": "Renna Mobile Oman",
+      "status": 1
+    },
+    {
+      "id": 103,
+      "clientname": "Sagar Polyclinic",
+      "status": 1
+    },
+    {
+      "id": 104,
+      "clientname": "Salam Stores",
+      "status": 1
+    },
+    {
+      "id": 105,
+      "clientname": "SANDAN",
+      "status": 1
+    },
+    {
+      "id": 106,
+      "clientname": "Saraya Bandar Al Jissah (Muscat Bay)",
+      "status": 1
+    },
+    {
+      "id": 107,
+      "clientname": "Sayyar Group",
+      "status": 1
+    },
+    {
+      "id": 108,
+      "clientname": "Scan Electromechanical Co. LLC",
+      "status": 1
+    },
+    {
+      "id": 109,
+      "clientname": "Semb Jinko Shine SAOC",
+      "status": 1
+    },
+    {
+      "id": 110,
+      "clientname": "Sharqiyah University",
+      "status": 1
+    },
+    {
+      "id": 111,
+      "clientname": "Smart Outsourcing Solutions Doha, Qatar",
+      "status": 1
+    },
+    {
+      "id": 112,
+      "clientname": "Spinneys Dubai LLC",
+      "status": 1
+    },
+    {
+      "id": 113,
+      "clientname": "Starcare Hospital Muscat",
+      "status": 1
+    },
+    {
+      "id": 114,
+      "clientname": "Suhail Bahwan Group",
+      "status": 1
+    },
+    {
+      "id": 115,
+      "clientname": "Sultan Qaboos Port Authority",
+      "status": 1
+    },
+    {
+      "id": 116,
+      "clientname": "Sultan Telecom Kuwait",
+      "status": 1
+    },
+    {
+      "id": 117,
+      "clientname": "Tageer Finance Oman",
+      "status": 1
+    },
+    {
+      "id": 118,
+      "clientname": "Takaful Insurance Co. SAOG Oman",
+      "status": 1
+    },
+    {
+      "id": 119,
+      "clientname": "Tatweer Duqm",
+      "status": 1
+    },
+    {
+      "id": 120,
+      "clientname": "Towell Group",
+      "status": 1
+    },
+    {
+      "id": 121,
+      "clientname": "Trust Travel & Tourism Company",
+      "status": 1
+    },
+    {
+      "id": 122,
+      "clientname": "Voltamp Oman",
+      "status": 1
+    },
+    {
+      "id": 123,
+      "clientname": "Zubair Group of Companies",
+      "status": 1
+    },
+    {
+      "id": 124,
+      "clientname": "TEST Sync Client XYZ",
+      "status": 1
+    },
+    {
+      "id": 125,
+      "clientname": "aatahil",
+      "status": 1
+    }
+  ]
+}

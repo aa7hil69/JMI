@@ -1,0 +1,88 @@
+{
+  "items": [
+    {
+      "id": 32,
+      "title": "fgfdgs",
+      "description": "sdf",
+      "image": "uploads/gallery/20260803150205-c1df97f4e9c3176c51b94fe0f2bacb64.jpg",
+      "uploaded_on": "2026-08-03 15:02:05"
+    },
+    {
+      "id": 31,
+      "title": "Featured in Entrepreneur Gulf - July 2026",
+      "description": "Honoured to be recognised by Entrepreneur Gulf as the Most Visionary Entrepreneur from Oman. The feature highlights our people-first philosophy, and commitment to workforce development across Oman and the GCC: https://entrepreneurgulf.com/magazine-digital/vol-8-issue-8-oman.html#features/19",
+      "image": "uploads/gallery/6a5f528947b75-moh.png",
+      "uploaded_on": ""
+    },
+    {
+      "id": 30,
+      "title": "Promotion Announcement",
+      "description": "We are pleased to announce the promotion of Mr. Mohammed Mal Allah Ramadhan Al Balushi to HR & Administration Manager at JM International SPC, effective June 10, 2026. Please join us in congratulating him on this well-deserved achievement.",
+      "image": "uploads/gallery/6a5f51d737a90-moh1.png",
+      "uploaded_on": ""
+    },
+    {
+      "id": 27,
+      "title": "Recognized for HR Excellence & Talent Development",
+      "description": "We are honored to be highlighted by Oman Malayali Directory for contributions in HR consultancy and supporting youth career pathways across Oman.\nRead more: https://oman.malayali.directory/special-page/jessy-mathew/",
+      "image": "uploads/gallery/69f749c030077-Untitled.png",
+      "uploaded_on": ""
+    },
+    {
+      "id": 26,
+      "title": "Driving Impact Through Public-Private Partnerships (PPPs)",
+      "description": "An insightful session about “Making PPPs Work: Regional Models, Local Opportunities” explored how PPP frameworks can deliver sustainable value, while being aligned with Oman Vision 2040. ",
+      "image": "uploads/gallery/698c3aa975716-Untitled.png",
+      "uploaded_on": ""
+    },
+    {
+      "id": 25,
+      "title": "Celebrating Contributions to Youth Leadership",
+      "description": "Recognized for meaningful contributions to the Oman Catholic Youth Retreat 2025, celebrating efforts in faith-building and leadership.",
+      "image": "uploads/gallery/697097a8ef477-1766169360565.jpg",
+      "uploaded_on": ""
+    },
+    {
+      "id": 22,
+      "title": "Business, Bites & Great Conversations | Oman American Business Council",
+      "description": "Fostering meaningful business connections and cross-sector collaboration that drive growth and innovation in Oman’s dynamic economy.",
+      "image": "uploads/gallery/690aeb07d31a2-Untitled.jpg",
+      "uploaded_on": ""
+    },
+    {
+      "id": 21,
+      "title": "Be the Change - Your Work, Your Faith, Your Future",
+      "description": "Inspiring over 250 young people to lead with faith, integrity, and purpose, thus creating ripple effects of positive change in their communities.",
+      "image": "uploads/gallery/690ae9c1a50fc-sts1.jpg",
+      "uploaded_on": ""
+    },
+    {
+      "id": 20,
+      "title": "The Power of Social Media in Career Building | GUtech",
+      "description": "Empowering students to leverage digital platforms strategically and enhance their employability in a competitive market.",
+      "image": "uploads/gallery/690ae9a2ecaea-gu3.jpg",
+      "uploaded_on": ""
+    },
+    {
+      "id": 19,
+      "title": "Empowering Through Learning | Building Skills for Tomorrow",
+      "description": "Driving real-world growth by equipping professionals with the skills, confidence, and curiosity to achieve lasting success.",
+      "image": "uploads/gallery/690ae97f42988-event1.jpg",
+      "uploaded_on": ""
+    },
+    {
+      "id": 11,
+      "title": "The Impact of Artificial Intelligence on the Medical Sector | HIHS",
+      "description": "Exploring how AI is transforming healthcare and preparing professionals to thrive in the digital future of medicine.",
+      "image": "uploads/gallery/690ae8bfa718b-jul23-2.jpg",
+      "uploaded_on": ""
+    },
+    {
+      "id": 10,
+      "title": "Career Readiness Workshop | GUtech",
+      "description": "Helping fresh graduates turn potential into performance through practical career strategies and hands-on guidance.",
+      "image": "uploads/gallery/690ae959aad3c-apr30-3.jpg",
+      "uploaded_on": ""
+    }
+  ]
+}

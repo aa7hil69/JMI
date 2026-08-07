@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Event Management - JM International SPC</title>
+    <link rel="shortcut icon" type="image/png" href="../images/logo.png?v=2">
+    <link rel="icon" type="image/png" href="../images/logo.png?v=2">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            background-color: #1e293b;
+            color: white;
+            padding-top: 60px;
+            transition: all 0.3s;
+        }
+        .sidebar a {
+            color: #d1d5db;
+            padding: 15px 20px;
+            display: block;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #334155;
+            color: white;
+        }
+        .sidebar .nav-item.active a {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+            position: fixed;
+            width: calc(100% - 250px);
+            top: 0;
+            left: 250px;
+            z-index: 1000;
+        }
+        .navbar-brand {
+            font-weight: 600;
+            color: #1e293b;
+        }
+        .card {
+            transition: transform 0.2s;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .footer {
+            background-color: #1e293b;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            margin-left: 250px;
+        }
+        .btn-primary {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+        }
+        .btn-primary:hover {
+            background-color: #2563eb;
+            border-color: #2563eb;
+        }
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 20px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #0d6efd;
+        }
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+        .error {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        .image-preview img {
+            max-width: 100px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .modal-images img {
+            max-width: 150px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .form-text {
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
+        @media (max-width: 991px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .main-content, .navbar, .footer {
+                margin-left: 0;
+                width: 100%;
+            }
+            .navbar {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="sidebar-header p-3 text-center">
+            <img src="../images/logo.png" alt="Admin Panel Logo" style="max-width: 150px; height: auto; margin-bottom: 10px;">
+            <h4 class="text-white">Admin Panel</h4>
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a href="dashboard.php"><i class="fas fa-tachometer-alt me-2"></i> Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a href="applications_list.php"><i class="fas fa-globe"></i> Received Applications</a>
+            </li>
+            <li class="nav-item">
+                <a href="applications_list_rd.php"><i class="fas fa-globe"></i> Resume Drop Off </a>
+            </li>
+            <li class="nav-item">
+                <a href="gallery.php"><i class="fas fa-images me-2"></i> Gallery</a>
+            </li>
+            <li class="nav-item">
+                <a href="jobs_admin.php"><i class="fas fa-briefcase me-2"></i> Job</a>
+            </li>
+            <li class="nav-item active">
+                <a href="admin-events.html"><i class="fas fa-calendar-alt me-2"></i> Event</a>
+            </li>
+            <li class="nav-item">
+                <a href="messages.php"><i class="fas fa-envelope me-2"></i> Message</a>
+            </li>
+            <li class="nav-item">
+                <a href="clients.php"><i class="fas fa-users me-2"></i> Client</a>
+            </li>
+            <li class="nav-item">
+                <a href="logout.php"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">JM International SPC</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-user me-2"></i> Admin</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container my-5">
+            <h3 class="text-center mb-4">Event Management</h3>
+            <div class="row g-4">
+                <!-- Left Side: Event Form -->
+                <div class="col-lg-4">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h3 id="form-title" class="mb-0">Add New Event</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="event-form">
+                                <div class="mb-3">
+                                    <label for="event-name" class="form-label">Event Name</label>
+                                    <input type="text" class="form-control" id="event-name" required>
+                                    <div id="event-name-error" class="error d-none"></div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="event-details" class="form-label">Event Details</label>
+                                    <textarea class="form-control" id="event-details" rows="4" required></textarea>
+                                    <div id="event-details-error" class="error d-none"></div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="event-url" class="form-label">Event URL</label>
+                                    <input type="url" class="form-control" id="event-url" placeholder="https://example.com">
+                                    <div id="event-url-error" class="error d-none"></div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="posted-on" class="form-label">Posted On</label>
+                                    <input type="date" class="form-control" id="posted-on" required>
+                                    <div id="posted-on-error" class="error d-none"></div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="posted-by" class="form-label">Posted By</label>
+                                    <input type="text" class="form-control" id="posted-by" required>
+                                    <div id="posted-by-error" class="error d-none"></div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="photos" class="form-label">Upload Photos (up to 3)</label>
+                                    <input type="file" class="form-control" id="photos" accept="image/*" multiple>
+                                    <div id="photos-error" class="error d-none"></div>
+                                    <div class="form-text">Hold Ctrl (Windows) or Cmd (Mac) to select up to 3 images.</div>
+                                    <div id="image-preview" class="image-preview mt-2"></div>
+                                </div>
+                                <button type="submit" id="submit-btn" class="btn btn-primary w-100">Add Event</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Side: Event List -->
+                <div class="col-lg-8">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h3 class="mb-0">Event List</h3>
+                        </div>
+                        <div class="card-body">
+                            <!-- Filters -->
+                            <div class="row mb-4">
+                                <div class="col-md-4">
+                                    <label for="filter-name" class="form-label">Filter by Name</label>
+                                    <input type="text" class="form-control" id="filter-name" placeholder="Search by event name">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="filter-from" class="form-label">From Date</label>
+                                    <input type="date" class="form-control" id="filter-from">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="filter-to" class="form-label">To Date</label>
+                                    <input type="date" class="form-control" id="filter-to">
+                                </div>
+                                <div class="col-md-2 d-flex align-items-end">
+                                    <button onclick="fetchEvents()" class="btn btn-primary w-100">Apply Filters</button>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Event Name</th>
+                                            <th>Event URL</th>
+                                            <th>Posted On</th>
+                                            <th>Posted By</th>
+                                            <th>Enabled</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="event-table"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 JM International SPC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal for Viewing Details -->
+    <div class="modal fade" id="view-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Event Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Event Name:</strong> <span id="modal-event-name"></span></p>
+                    <p><strong>Event Details:</strong> <span id="modal-event-details"></span></p>
+                    <p><strong>Event URL:</strong> <a id="modal-event-url" href="#" target="_blank"></a></p>
+                    <p><strong>Posted On:</strong> <span id="modal-posted-on"></span></p>
+                    <p><strong>Posted By:</strong> <span id="modal-posted-by"></span></p>
+                    <p><strong>Photos:</strong></p>
+                    <div id="modal-photos" class="modal-images"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let editingId = null;
+        let events = [];
+        const modal = new bootstrap.Modal(document.getElementById('view-modal'));
+        const form = document.getElementById('event-form');
+        const tableBody = document.getElementById('event-table');
+        const formTitle = document.getElementById('form-title');
+        const submitBtn = document.getElementById('submit-btn');
+        const photosInput = document.getElementById('photos');
+        const imagePreview = document.getElementById('image-preview');
+        const filterName = document.getElementById('filter-name');
+        const filterFrom = document.getElementById('filter-from');
+        const filterTo = document.getElementById('filter-to');
+
+        // Error handling
+        function showError(inputId, message) {
+            const errorElement = document.getElementById(`${inputId}-error`);
+            errorElement.textContent = message;
+            errorElement.classList.remove('d-none');
+        }
+
+        function clearErrors() {
+            document.querySelectorAll('.error').forEach(el => el.classList.add('d-none'));
+        }
+
+        // Handle image preview
+        photosInput.addEventListener('change', () => {
+            imagePreview.innerHTML = '';
+            const files = photosInput.files;
+            if (files.length > 3) {
+                showError('photos', 'Maximum 3 photos allowed');
+                photosInput.value = '';
+                return;
+            }
+            clearErrors();
+            Array.from(files).forEach(file => {
+                if (!file.type.startsWith('image/')) {
+                    showError('photos', 'Only image files are allowed');
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.className = 'img-thumbnail';
+                    imagePreview.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+
+        // Fetch events
+        async function fetchEvents() {
+            const nameFilter = filterName.value;
+            const fromDate = filterFrom.value;
+            const toDate = filterTo.value;
+
+            if (fromDate && toDate && new Date(fromDate) > new Date(toDate)) {
+                alert('From date must be before or equal to To date');
+                return;
+            }
+
+            const params = new URLSearchParams();
+            if (nameFilter) params.append('name', nameFilter);
+            if (fromDate) params.append('from', fromDate);
+            if (toDate) params.append('to', toDate);
+
+            try {
+                const response = await fetch(`api.php?${params.toString()}`);
+                events = await response.json();
+                if (events.error) {
+                    alert(events.error);
+                    return;
+                }
+                renderEvents(events);
+            } catch (error) {
+                console.error('Fetch error:', error);
+                alert('Failed to fetch events');
+            }
+        }
+
+        // Render events
+        function renderEvents(events) {
+            tableBody.innerHTML = '';
+            events.forEach((event, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${event.event_name}</td>
+                    <td><a href="${event.event_url || '#'}" target="_blank">${event.event_url ? 'Link' : '-'}</a></td>
+                    <td>${event.posted_on}</td>
+                    <td>${event.posted_by}</td>
+                    <td>
+                        <label class="toggle-switch">
+                            <input type="checkbox" ${event.enabled == 1 ? 'checked' : ''} onchange="toggleEnable(${event.id})">
+                            <span class="slider"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-info" onclick="viewEvent(${index})">View</button>
+                        <button class="btn btn-sm btn-warning" onclick="editEvent(${index})">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteEvent(${event.id})">Delete</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Add or update event
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            clearErrors();
+
+            const eventName = document.getElementById('event-name').value.trim();
+            const eventDetails = document.getElementById('event-details').value.trim();
+            const eventUrl = document.getElementById('event-url').value.trim();
+            const postedOn = document.getElementById('posted-on').value;
+            const postedBy = document.getElementById('posted-by').value.trim();
+            const files = photosInput.files;
+
+            // Validation
+            if (!eventName) {
+                showError('event-name', 'Event name is required');
+                return;
+            }
+            if (!eventDetails) {
+                showError('event-details', 'Event details are required');
+                return;
+            }
+            if (eventUrl && !/^(https?:\/\/)/i.test(eventUrl)) {
+                showError('event-url', 'Please enter a valid URL (e.g., https://example.com)');
+                return;
+            }
+            if (!postedOn) {
+                showError('posted-on', 'Posted on date is required');
+                return;
+            }
+            if (!postedBy) {
+                showError('posted-by', 'Posted by is required');
+                return;
+            }
+            if (files.length > 3) {
+                showError('photos', 'Maximum 3 photos allowed');
+                return;
+            }
+
+            // Convert images to base64
+            const photoUrls = [];
+            for (let i = 0; i < Math.min(files.length, 3); i++) {
+                if (!files[i].type.startsWith('image/')) {
+                    showError('photos', 'Only image files are allowed');
+                    return;
+                }
+                const file = files[i];
+                const reader = new FileReader();
+                const promise = new Promise(resolve => {
+                    reader.onload = (e) => resolve(e.target.result);
+                    reader.readAsDataURL(file);
+                });
+                photoUrls.push(await promise);
+            }
+
+            const eventData = { eventName, eventDetails, eventUrl, postedOn, postedBy, photos: photoUrls };
+            let url = 'api.php';
+            let method = 'POST';
+
+            if (editingId !== null) {
+                eventData.id = editingId;
+                method = 'PUT';
+            }
+
+            try {
+                const response = await fetch(url, {
+                    method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(eventData)
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    alert(result.message || 'Event saved successfully!');   // â This is the only new line
+                    form.reset();
+                    imagePreview.innerHTML = '';
+                    editingId = null;
+                    formTitle.textContent = 'Add New Event';
+                    submitBtn.textContent = 'Add Event';
+                    await fetchEvents();
+                } else {
+                    alert(result.error || 'Operation failed');
+                }
+            } catch (error) {
+                console.error('Submit error:', error);
+                alert('Operation failed');
+            }
+        };
+
+        // View event
+        async function viewEvent(index) {
+            const event = events[index];
+            document.getElementById('modal-event-name').textContent = event.event_name;
+            document.getElementById('modal-event-details').textContent = event.event_details;
+            const eventUrlElement = document.getElementById('modal-event-url');
+            eventUrlElement.href = event.event_url || '#';
+            eventUrlElement.textContent = event.event_url || '-';
+            document.getElementById('modal-posted-on').textContent = event.posted_on;
+            document.getElementById('modal-posted-by').textContent = event.posted_by;
+            const modalPhotos = document.getElementById('modal-photos');
+            modalPhotos.innerHTML = '';
+            [event.photo1, event.photo2, event.photo3].forEach(url => {
+                if (url) {
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.className = 'img-thumbnail';
+                    modalPhotos.appendChild(img);
+                }
+            });
+            modal.show();
+        }
+
+        // Edit event
+        async function editEvent(index) {
+            const event = events[index];
+            document.getElementById('event-name').value = event.event_name;
+            document.getElementById('event-details').value = event.event_details;
+            document.getElementById('event-url').value = event.event_url || '';
+            document.getElementById('posted-on').value = event.posted_on;
+            document.getElementById('posted-by').value = event.posted_by;
+            imagePreview.innerHTML = '';
+            [event.photo1, event.photo2, event.photo3].forEach(url => {
+                if (url) {
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.className = 'img-thumbnail';
+                    imagePreview.appendChild(img);
+                }
+            });
+            editingId = event.id;
+            formTitle.textContent = 'Edit Event';
+            submitBtn.textContent = 'Update Event';
+        }
+
+        // Delete event
+        async function deleteEvent(id) {
+            if (confirm('Are you sure you want to delete this event?')) {
+                try {
+                    const response = await fetch(`api.php?id=${id}`, { method: 'DELETE' });
+                    const result = await response.json();
+                    if (result.success) {
+                        await fetchEvents();
+                    } else {
+                        alert(result.error || 'Failed to delete event');
+                    }
+                } catch (error) {
+                    console.error('Delete error:', error);
+                    alert('Failed to delete event');
+                }
+            }
+        }
+
+        // Toggle enable/disable
+        async function toggleEnable(id) {
+            const event = events.find(e => e.id == id);
+            const enabled = event.enabled == 1 ? 0 : 1;
+            try {
+                const response = await fetch(`api.php?id=${id}&enabled=${enabled}`, { method: 'PATCH' });
+                const result = await response.json();
+                if (result.success) {
+                    await fetchEvents();
+                } else {
+                    alert(result.error || 'Failed to toggle event');
+                }
+            } catch (error) {
+                console.error('Toggle error:', error);
+                alert('Failed to toggle event');
+            }
+        }
+
+        // Initial fetch
+        fetchEvents();
+    </script>
+</body>
+</html>

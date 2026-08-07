@@ -1,0 +1,20 @@
+{
+  "applications": [
+    {
+      "id": 1,
+      "username": "aahi",
+      "phone": "7305938195",
+      "email": "aathilibrahim1234@gmail.com",
+      "submitted_at": "2026-08-03 14:53:59",
+      "resume_path": "uploads/resumes/20260803145359-Abdullah_Said_Nasser_Al_Hinai_original.pdf"
+    },
+    {
+      "id": 2,
+      "username": "darrel",
+      "phone": "8401034114031",
+      "email": "aathilibrahim69@gmail.com",
+      "submitted_at": "2026-08-03 15:09:45",
+      "resume_path": "uploads/resumes/20260803150945-Abhinav_Chandan_original.docx"
+    }
+  ]
+}
